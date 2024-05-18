@@ -2,77 +2,83 @@
     margin: 0px;
     padding: 0px;
 }
-.hero{
-    position: relative;
-    background: linear-gradient(rgb(255, 192, 203),rgb(0, 0, 0));
-    width: 100%;
-    height: 100vh;
-    color:white;   
+body{
+    background:white;
 }
-.container{
-    background-color: rgba(229, 255, 0, 0.365);
-    position: absolute;
-    top: 50%;
-    left: 50%;
+.buttons{
+    margin:10px;
+}
+.buttons button{
+    border: 0px;
+    outline: 0px;
+    background: black;
+    color: white;
+    padding: 10px;
     border-radius: 10px;
-    width: 800px;
-    height: 180px;
-    transform: translate(-50%,-50%);
+    width: 110px;
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
 }
-.clock{
-    justify-content: center;
+#tostbar{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 20px;
+    flex-direction: column;
+}
+.toast{
+    width: 400px;
+    height: 70px;
+    box-shadow: 0 0 20px rgb(0, 0, 0,0.3);
+    background: #fff;
+    font-weight: 500;
+    margin: 15px 0 ;
     align-items: center;
     display: flex;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(40px);
+    position: relative;
+    transform:translateY(100%);
+    animation: anima 0.5s linear forwards;
 }
-.container::before{
-        content: '';
-        width: 180px;
-        height: 180px;
-        background: #f41b75;
-        border-radius: 5px;
-        position: absolute;
-        left: -50px;
-        top: -50px;
-        z-index: -1;
+
+@keyframes anima{
+    100%{
+        transform: translateX(0%);
+    }
 }
-.container::after{
+.toast i{
+    margin: 0 20px;
+    color: green;
+    font-size: 25px;
+
+}
+.toast.error i{
+    color: red;
+}
+.toast.Invalid i{
+    color:orange;
+}
+.toast::after{
     content: '';
-    width: 180px;
-    height: 180px;
-    background:rgb(0, 0, 0);
-    border-radius: 50%;
     position: absolute;
-    right: -50px;
-    bottom: -50px;
-    z-index: -1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: green;
+    animation: anim 5s linear forwards;
 }
-.clock span{
-    width: 110px;
-    font-size: 80px;
-    position:relative;
-    text-align: center;
-    display: inline-block;
-    color: black;
+@keyframes anim{
+    100%{
+        width: 10px;
+    }
 }
-.clock span::after{
-    content: "";
-    font-size: 16px;
-    color: white;
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform:translateX(-50%);
-    color: black;
+.toast.error::after{
+    background: red;
 }
-#hrs::after{
-    content: "hours";
-}
-#min::after{
-    content: "mints";
-}
-#sec::after{
-    content: "seconds";
+.toast.Invalid::after{
+    background:orange;
 }
